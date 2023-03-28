@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  server:
+    entrypoint: [ "sh", "-c", "java -cp app:app/lib/* br.com.gd.picpay.PicPayApplication" ]
+    network_mode: "host"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/db_picpay?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=V9Yct9ulyEKKLK9vt_HAcw
+      - AWS_ACCESS_KEY=AKIARLANSAZOTGD75VVI
+      - AWS_SECRET_KEY=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
+      - EMAIL_FROM=filipe.chiconello@geradordedevs.com.br
+      - EMAIL_SUBJECT_OTP=Código OTP
+      - EMAIL_SUBJECT_SIGNUP=Cadastro realizado com sucesso

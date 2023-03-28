@@ -1,0 +1,57 @@
+swagger:
+  contact:
+    name: 'Filipe Chiconello'
+    email: "filipe.chiconello@geradordedevs.com.br"
+  app:
+    name: PicPay API
+    version: 0.1.0
+    description: API responsible for transactions from balances from users.
+  base:
+    package: br.com.gd.picpay.controllers
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path:
+      path-mapping:
+        health: /healthcheck
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_KEY}
+
+email:
+  from: ${EMAIL_FROM}
+  subject:
+    otp: ${EMAIL_SUBJECT_OTP}
+    signup: ${EMAIL_SUBJECT_SIGNUP}
+
+auth:
+  util:
+    jwt:
+      secret: ${JWT_SECRET}
